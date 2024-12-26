@@ -1,187 +1,210 @@
 <!DOCTYPE html>
 <html oncontextmenu="return false" onselectstart="return false" ondragstart="return false" lang="en">
 <head>
-	<link rel="icon" type="image/x-icon"
-        href="https://i.ibb.co/VVdrZLm/502d5d69-6535-4092-be10-cb1b81514b46.jpg" />
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/VVdrZLm/502d5d69-6535-4092-be10-cb1b81514b46.jpg" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	 <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="AB-TECH" />
-	 <meta name="description"
-        content="AB-TECH - Know How To use Ur Mind" />
-    <meta name="keywords"
-        content="Devi,programming,Ethical,Anime Fan" />
-  
+    <meta name="description" content="AB-TECH - Know How To use Ur Mind" />
+    <meta name="keywords" content="Devi,programming,Ethical,Anime Fan" />
     <meta itemprop="image" content="https://i.ibb.co/VVdrZLm/502d5d69-6535-4092-be10-cb1b81514b46.jpg" />
     <meta property="og:image" content="https://i.ibb.co/VVdrZLm/502d5d69-6535-4092-be10-cb1b81514b46.jpg" />
-    <meta property="og:image:secure_url"
-        content="https://i.ibb.co/VVdrZLm/502d5d69-6535-4092-be10-cb1b81514b46.jpg" />
+    <meta property="og:image:secure_url" content="https://i.ibb.co/VVdrZLm/502d5d69-6535-4092-be10-cb1b81514b46.jpg" />
     <meta property="og:image:width" content="650" />
     <meta property="og:image:height" content="350" />
     <title>AB-TECH</title>
-	
-   
     <link rel="stylesheet" href="style.css">
-    
-    
-  <link rel="stylesheet"
-  href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
- 
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+       
+
+        
+        .snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none; 
+            z-index: 9999;
+        }
+
+       
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #fff;
+            font-size: 24px;
+            user-select: none;
+            animation: fall linear infinite;
+            opacity: 0.8;
+        }
+
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="snowflakes" aria-hidden="true"></div>
+    <header>
+        <a href="#" class="logo">AB<span>-TECH</span></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <ul class="navlist">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="top-btnn">
+            <a href="https://whatsapp.com/channel/0029VaMGgVL3WHTNkhzHik3c" class="h-btn">OUR CHANNEL</a>
+        </div>
+    </header>
 
-<header>
-  <a href="#" class="logo">AB<span>-TECH</span></a>
-  <div class="bx bx-menu" id="menu-icon"></div>
-  <ul class="navlist">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <section class="hero" id="home">
+        <div class="main-content" data-aos="fade-in">
+            <h4>Hi, There</h4>
+            <h1>I'm <span>AB in short</span></h1>
+            <p>I have many projects i cant tell ya everything just know this</p>
+            <div class="social">
+                <a href=""><i class="ri-facebook-fill"></i></a>
+                <a href=""><i class="ri-instagram-fill"></i></a>
+                <a href="https://wa.me/+233268374753"><i class="ri-whatsapp-fill"></i></a>
+                <a href=""><i class="ri-youtube-fill"></i></a>
+            </div>
+            <div class="main-btn">
+                <a href="https://ab-stream.us.kg/" class="btn">ANIME-SITE</a>
+                <a href="https://ai.ab-tech.us.kg/" class="btn btn2">AB-AI-SITE</a>
+            </div>
+        </div>
+    </section>
 
-  </ul>
-<div class="top-btnn">
-  <a href="https://whatsapp.com/channel/0029VaMGgVL3WHTNkhzHik3c" class="h-btn">OUR CHANNEL</a>
-</div>
+    <section class="about" id="about">
+        <div class="about-img" data-aos="zoom-in-down">
+            <img src="https://i.ibb.co/VVdrZLm/502d5d69-6535-4092-be10-cb1b81514b46.jpg">
+        </div>
+        <div class="about-text" data-aos="zoom-in-up">
+            <h2>I am a <span>Frontend</span><br> Developer</h2>
+            <div class="exp-area">
+                <p class="exp">
+                    Experience 
+                    <span>2 Years</span>
+                </p>
+                <p class="exp">
+                    Speciality:
+                    <span>Love js, Developer</span>
+                </p>
+                <p class="exp">
+                    Address: 
+                    <span>GHANIAN/AMERICAN</span>
+                </p>
+                <p class="exp">
+                    Location: 
+                    <span>Find me on whatsapp</span>
+                </p>
+                <p class="exp">
+                    Phone: 
+                    <span>I cant tell ya that</span>
+                </p>
+            </div>
+            <a href="https://ab-tech.us.kg/tools.html" class="btn">TOOLS</a>
+        </div>
+    </section>
 
-</header>
+    <section class="services" id="services">
+        <div class="center-text" data-aos="fade-down">
+            <h2>Available<span>-Resources</span></h2>
+        </div>
+        <div class="services-content" data-aos="zoom-in-up">
+            <div class="box">
+                <img src="https://i.ibb.co/RyjJ1mG/80d96d15-423b-4033-909e-ab8d8903d102.jpg" width="100px" alt="">
+                <h3>CHAT WITH MY AI</h3>
+                <p>AB GEMINI AI!</p>
+                <a href="https://ai.ab-tech.us.kg/">Go To Site <i class="ri-arrow-right-line"></i></a>
+            </div>
+            <div class="box">
+                <img src="https://i.ibb.co/XsLkQqw/38de0940-27b2-402d-83f2-db986dd3cd90.jpg" alt="" width="100px">
+                <h3>ANIME WEBSITE</h3>
+                <p>GO to Our Website To Download Anime</p>
+                <a href="https://ab-stream.us.kg/">Go To Site <i class="ri-arrow-right-line"></i></a>
+            </div>
+            <div class="box">
+                <img src="https://cdn.ironman.my.id/i/ar3eg9.png" width="100px" alt="">
+                <h3>Whatsapp Unban</h3>
+                <p>Use This To Unban Your Whatsapp!</p>
+                <a href="https://whatsapp-unbanpro.vercel.app">Go To Site <i class="ri-arrow-right-line"></i></a>
+            </div>
+        </div>
+    </section>
 
+    <section class="contact" id="contact">
+        <div class="center-text" data-aos="fade-down">
+            <h2>Contact <span>me</span></h2>
+        </div>
+        <div class="contact-form" data-aos="zoom-in">
+            <form action="">
+                <input type="text" placeholder="Your name" required>
+                <input type="email" placeholder="Email Address..." required>
+                <textarea name="" id="" cols="30" rows="10" placeholder="Write Message Here." required></textarea>
+                <input type="submit" value="Send" class="send-btn">
+            </form>
+        </div>
+    </section>
 
-<section class="hero" id="home">
-<div class="main-content" data-aos="fade-in">
-  <h4>Hi, There</h4>
-  <h1>I'm <span>AB in short</span></h1>
-  <p>I have many projects i cant tell ya everything just know this</p>
-<div class="social">
-  <a href=""><i class="ri-facebook-fill"></i></a>
-  <a href=""><i class="ri-instagram-fill"></i></a>
-  <a href="https://wa.me/+233268374753"><i class="ri-whatsapp-fill"></i></a>
-  <a href=""><i class="ri-youtube-fill"></i></a>
-</div>
-<div class="main-btn">
-  <a href="https://ab-stream.us.kg/" class="btn">ANIME-SITE</a>
-  <a href="https://ai.ab-tech.us.kg/" class="btn btn2">AB-AI-SITE</a>
-</div>
-
-</div>
-
-</section>
-
-<section class="about" id="about">
-  <div class="about-img" data-aos="zoom-in-down">
-    <img src="https://i.ibb.co/VVdrZLm/502d5d69-6535-4092-be10-cb1b81514b46.jpg" >
-  </div>
-<div class="about-text" data-aos="zoom-in-up">
-  <h2>I am a <span>Frontend</span><br>
-  Developer </h2>
-  <div class="exp-area">
-    <p class="exp">
-      Experience 
-      <span>2 Years</span>
-    </p>
-    
-    <p class="exp">
-      Speciality:
-      <span>Love js, Developer</span>
-    </p>
-    <p class="exp">
-      Address: 
-      <span>GHANIAN/AMERICAN</span>
-    </p>
-    
-    <p class="exp">
-      Location: 
-      <span>Find me on whatsapp</span>
-    </p>
-    
-    <p class="exp">
-      Phone: 
-      <span>I cant tell ya that</span>
-    </p>
-  </div>
-  <a href="https://ab-tech.us.kg/tools.html" class="btn">TOOLS</a>
-</div>
-
-</section>
-
-<section class="services" id="services">
-  <div class="center-text" data-aos="fade-down">
-    <h2>Available<span>-Resources</span> </h2>
-  </div>
-  <div class="services-content" data-aos="zoom-in-up">
-
-    <div class="box">
-
-      <img src="https://i.ibb.co/RyjJ1mG/80d96d15-423b-4033-909e-ab8d8903d102.jpg" width="100px"alt="">
-      <h3>CHAT WITH MY AI</h3>
-      <p>AB GEMINI AI!</p>
-      <a href="https://ai.ab-tech.us.kg/">Go To Site
- <i class="ri-arrow-right-line"></i>
-
-      </a>
+    <div class="footer">
+        <div class="copyright">
+            <p>2024 AB-TECH, All Right Reserved.</p>
+        </div>
+        <a href="#home" class="scroll-top">
+            <i class="ri-arrow-up-s-fill"></i>
+        </a>
     </div>
+      
+    <script src="./script.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 300,
+            duration: 1400,
+        });
 
-    <div class="box">
+        
+        function createSnowflakes() {
+            const numberOfSnowflakes = 100; 
+            const snowflakesContainer = document.querySelector('.snowflakes');
 
-      <img src="https://i.ibb.co/XsLkQqw/38de0940-27b2-402d-83f2-db986dd3cd90.jpg" alt="" width="100px">
-      <h3>ANIME WEBSITE</h3>
-      <p>GO to Our Website To Download Anime</p>
-      <a href="https://ab-stream.us.kg/">Go To Site
- <i class="ri-arrow-right-line"></i>
+            for (let i = 0; i < numberOfSnowflakes; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                
+                
+                snowflake.style.left = `${Math.random() * 100}vw`;
+                
+               
+                snowflake.style.fontSize = `${Math.random() * 10 + 10}px`;
+                
+                
+                snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                snowflake.style.animationDelay = `${Math.random() * 5}s`; 
+                
+               
+                snowflakesContainer.appendChild(snowflake);
+                
+                
+                snowflake.textContent = '❄';
+            }
+        }
 
-      </a>
-    </div>
-
-    <div class="box">
-
-      <img src="https://cdn.ironman.my.id/i/ar3eg9.png"width="100px" alt="">
-      <h3>Whatsapp Unban</h3>
-      <p>Use This To Unban Your Whatsapp!</p>
-      <a href="https://whatsapp-unbanpro.vercel.app">Go To Site
- <i class="ri-arrow-right-line"></i>
-
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<section class="contact" id="contact">
-  <div class="center-text" data-aos="fade-down">
-    <h2>Contact <span>me</span></h2>
-  </div>
-  <div class="contact-form" data-aos="zoom-in">
-    <form action="">
-      <input type="text" placeholder="Your name" required>
-      <input type="email" placeholder="Email Address..." required>
-      <textarea name="" id="" cols="30" rows="10" placeholder="Write Message Here." required></textarea>
-      <input type="submit" value="Send" class="send-btn">
-    </form>
-  </div>
-</section>
-
-<div class="footer">
-  <div class="copyright">
-    <p>2024 AB-TECH, All Right Reserved.</p>
-  </div>
-  <a href="#home" class="scroll-top">
-    <i class="ri-arrow-up-s-fill"></i>
-  </a>
-</div>
-	  
-<script src="./script.js"></script>
-  
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-  AOS.init({
-offset:300,
-duration:1400,
-  });
-</script>
-
+        
+        window.onload = createSnowflakes;
+    </script>
 </body>
 </html>
