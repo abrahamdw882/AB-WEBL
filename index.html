@@ -168,7 +168,30 @@
             <i class="ri-arrow-up-s-fill"></i>
         </a>
     </div>
-      
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+    emailjs.init("AEsqX-UFWaHD99d-S"); 
+    
+    const form = document.getElementById("contact-form");
+    
+    if (form) {
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            emailjs.sendForm("service_r1p0hbe", "template_ixfa6ru", form)
+                .then(function(response) {
+                    console.log('Success:', response);
+                    alert("Your message has been sent successfully!");
+                    form.reset();
+                }, function(error) {
+                    console.log('Error:', error);
+                    alert("There was an error sending your message. Please try again.");
+                });
+        });
+    } else {
+        console.error("Form element with ID 'contact-form' not found.");
+    }
+});
+    </script>
     <script src="./script.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
@@ -207,32 +230,6 @@
         
         window.onload = createSnowflakes;
     </script>
-<script>
-    (function() {
-        emailjs.init("AEsqX-UFWaHD99d-S");
-
-        const form = document.getElementById("contact-form");
-
-        if (!form) {
-            console.error("Form element with ID 'contact-form' not found.");
-            return;
-        }
-        form.addEventListener("submit", function(event) {
-            event.preventDefault(); 
-            const formData = new FormData(form);
-
-            emailjs.sendForm("service_r1p0hbe", "template_ixfa6ru", formData)
-                .then(function(response) {
-                    console.log('Success:', response);
-                    alert("Your message has been sent successfully!");
-                    form.reset();  
-                }, function(error) {
-                    console.log('Error:', error);
-                    alert("There was an error sending your message. Please try again.");
-                });
-        });
-    })();
-</script>
 
 </body>
 </html>
