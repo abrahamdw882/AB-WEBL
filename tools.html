@@ -1,160 +1,455 @@
 <!DOCTYPE html>
-<html lang="en">
+<html oncontextmenu="return false" onselectstart="return false" ondragstart="return false" lang="en">
 <head>
-    <link rel="icon" type="image/x-icon"
-        href="https://i.ibb.co/YTd281sg/85289f06-acbc-4a6b-ae6e-c31b2ef3d629.jpg" />
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/3m1mZn2C/f0ccfde6b910bb0ca61748b063c8c49a-2.jpg" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content=" BY AB-TECH" />
-    <meta name="keywords" content="Devi,programming,Ethical,Anime Fan" />
-    <meta itemprop="image" content="https://i.ibb.co/YTd281sg/85289f06-acbc-4a6b-ae6e-c31b2ef3d629.jpg" />
-    <meta property="og:image" content="https://i.ibb.co/YTd281sg/85289f06-acbc-4a6b-ae6e-c31b2ef3d629.jpg" />
-    <meta property="og:image:secure_url" content="https://i.ibb.co/YTd281sg/85289f06-acbc-4a6b-ae6e-c31b2ef3d629.jpg" />
+    <meta property="og:site_name" content="AB-TECH" />
+    <meta name="description" content="AB-ZTECH - Explore Our Collection of Tools" />
+    <meta name="keywords" content="tools, programming, utilities, resources" />
+    <meta itemprop="image" content="https://i.ibb.co/3m1mZn2C/f0ccfde6b910bb0ca61748b063c8c49a-2.jpg" />
+    <meta property="og:image" content="https://i.ibb.co/3m1mZn2C/f0ccfde6b910bb0ca61748b063c8c49a-2.jpg" />
+    <meta property="og:image:secure_url" content="https://i.ibb.co/3m1mZn2C/f0ccfde6b910bb0ca61748b063c8c49a-2.jpg" />
     <meta property="og:image:width" content="650" />
     <meta property="og:image:height" content="350" />
-    <title>AB TECH TOOLS</title>
+    <title>AB-ZTECH Tools</title>
+  
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
-        .snowflakes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none; 
-            z-index: 9999;
-        }
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter',sans-serif;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+}
+:root {
+--text-color:#fff;
+--bg-color:#1b1f24;
+--second-bg-color:#22282f;
+--main-color:#13bbff;
+--other-color:#c3cad5;
 
-        .snowflake {
-            position: absolute;
-            top: -10px;
-            color: #fff !important; 
-            font-size: 24px;
-            user-select: none;
-            animation: fall linear infinite;
-            opacity: 0.8;
-        }
+--h1-font:4.5rem;
+--h2-font:2.9rem;
+--p-font:1rem;
+}
+body {
+    color: var(--text-color);
+    background: var(--bg-color);
+}
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 16%;
+    background: var(--bg-color);
+    transition: all .50s ease;
+    box-shadow: 0 .1rem 1rem rgba(0,0,0,.2);
+}
+.logo {
+    font-size: 36px;
+    color: var(--text-color);
+    font-weight: 600;
+}
+span {
+    color: var(--main-color);
+}
+.navlist {
+    display: flex;
+}
+.navlist a {
+    font-size: var(--p-font);
+    font-weight: 500;
+    color: var(--other-color);
+    margin-left: 40px;
+    transition: all .50s ease;
+}
+.navlist a:hover {
+    color: var(--main-color);
+    text-shadow: 3px 3px 20px var(--main-color), -2px 1px 30px var(--text-color);
+}
+#menu-icon {
+    font-size: 35px;
+    z-index: 10001;
+cursor: pointer;
+display: none;
+}
+.h-btn {
+    display: inline-block;
+    padding: 11px 26px;
+    background:transparent ;
+    color: var(--main-color);
+    border: 2px solid var(--main-color);
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all .50s ease;
+}
+.h-btn:hover {
+    background: var(--main-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 20px var(--main-color);
+    transform: scale(1.1);
+}
+section {
+    padding: 110px 16% 90px;
+}
 
-        @keyframes fall {
-            0% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(100vh);
-            }
-        }
+.tools-intro {
+    text-align: center;
+    margin-bottom: 60px;
+    padding-top: 80px;
+}
+.tools-intro h1 {
+    font-size: var(--h1-font);
+    margin-bottom: 20px;
+}
+.tools-intro p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--other-color);
+    line-height: 1.6;
+}
+
+.services-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,auto));
+    align-items: center;
+    gap: 2.3rem;
+    margin-top: 4.2rem;
+}
+.box {
+    padding: 80px 40px 66px;
+    background: #2d343f;
+    border-radius: 28px;
+    border: 1px solid transparent;
+    box-shadow:  0 0 5px var(--main-color);
+    transition: all .50s ease;
+    cursor: pointer;
+    text-align: center;
+}
+.box img {
+    margin-bottom: 20px;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+.box h3 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.box p {
+    font-size: var(--p-font);
+    font-weight: 400;
+    color: var(--other-color);
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+.box a {
+    display: inline-block;
+    font-size: 22px;
+    line-height: 1.273em;
+    font-weight: 700;
+    padding: 7px 0;
+    color: var(--text-color);
+    border-bottom: 2px solid #5d6c83;
+    transition:  all .50s ease;
+}
+.box i {
+    vertical-align: middle;
+    font-size: 25px;
+    color: var(--main-color);
+    margin-left: 5px;
+}
+.box a:hover {
+    border-bottom: 2px solid var(--main-color);
+}
+.box:hover {
+    border: 1px solid var(--main-color);
+    transform: translateY(-5px) scale(1.03);
+}
+
+.collection-section {
+    background: var(--second-bg-color);
+    padding: 80px 16%;
+    margin-top: 60px;
+    text-align: center;
+}
+.collection-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+.collection-text h2 {
+    font-size: var(--h2-font);
+    margin-bottom: 20px;
+}
+.collection-text p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--other-color);
+    line-height: 1.6;
+}
+.collection-image {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.collection-image img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 0 20px var(--main-color);
+}
+
+.footer {
+    padding: 22px 16%;
+    background:var(--second-bg-color) ;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.copyright p{
+font-size: 15px;
+font-weight: 400;
+color: var(--other-color);
+}
+.scroll-top i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #075fe4;
+    width: 45px;
+    height: 45px;border-radius: 50%;
+    color: var(--text-color);
+    font-size: 27px;
+}
+
+.snowflakes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none; 
+    z-index: 9999;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: #fff;
+    font-size: 24px;
+    user-select: none;
+    animation: fall linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+@media(max-width:1700px) {
+    header {
+        padding: 20px 8%;
+    }
+    section{
+        padding: 90px 8% 80px;
+    }
+    .footer {
+        padding: 18px 8%;
+    }
+    .logo {
+        font-size: 25px;
+    }
+}
+
+@media(max-width:1380px) {
+    header {
+        padding: 20px 5%;
+    }
+    section{
+        padding: 90px 5% 80px;
+    }
+    .footer {
+        padding: 18px 5%;
+    }
+}
+
+@media (max-width:1290px){
+    .box {
+        padding: 40px 40px 46px;
+    }
+    .box img {
+        width: 100%;
+        height: 60px;
+        max-width: 60px;
+    }
+    .box h3 {
+        font-size: 21px;
+    }
+}
+
+@media (max-width:950px){
+    :root  {
+        --h1-font:3.5rem;
+    }
+    #menu-icon{
+        display: block;
+    }
+    .navlist {
+        position: absolute;
+        top: 100%;
+        right: -100%;
+        width: 255px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: var(--bg-color);
+        transition: all .50s ease;
+    }
+    .navlist a {
+        display: block;
+        padding: 17px;
+        font-size: 22px;
+    }
+    .navlist.active {
+        right: 0;
+    }
+    .collection-section {
+        padding: 60px 5%;
+    }
+}
+
+@media (max-width:680px) {
+    .tools-intro h1 {
+        font-size: 3rem;
+    }
+    .tools-intro p {
+        width: 100%;
+    }
+}
+
+@media (max-width:470px) {
+:root {
+    --h1-font:3rem;
+    --h2-font:2rem;
+}
+.box {
+    padding: 30px 20px;
+}
+}
     </style>
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<div class="snowflakes" aria-hidden="true"></div>
-<body class="bg-gradient-to-b from-gray-900 to-gray-800 text-white font-sans">
-    <header class="sticky top-0 z-10 bg-black bg-opacity-80 p-4 flex justify-between items-center">
-        <h1 class="text-xl sm:text-2xl">AB TECH😇</h1>
-        <nav>
-            <ul class="flex space-x-4 sm:space-x-6">
-                <li><a href="#download" class="hover:text-blue-400 transition">Download</a></li>
-                <li><a href="#groups" class="hover:text-blue-400 transition">Groups</a></li>
-                <li><a href="#about" class="hover:text-blue-400 transition">About</a></li>
-            </ul>
-        </nav>
+<body>
+    <div class="snowflakes" aria-hidden="true"></div>
+    <header>
+        <a href="#" class="logo">AB<span>-ZTECH</span></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <ul class="navlist">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="top-btnn">
+            <a href="https://whatsapp.com/channel/0029VaMGgVL3WHTNkhzHik3c" class="h-btn">OUR CHANNEL</a>
+        </div>
     </header>
 
-    <section class="h-[40vh] sm:h-[60vh] bg-cover bg-center flex justify-center items-center text-center relative" style="background-image: url('https://i.ibb.co/3m1mZn2C/f0ccfde6b910bb0ca61748b063c8c49a-2.jpg')">
-        <div class="absolute inset-0 bg-black opacity-50"></div>
-        <div class="relative z-10 px-4">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Welcome to AB Tools</h1>
-            <p class="text-lg sm:text-xl">here are the tools available feel free to use!</p>
+    <section class="tools-page">
+        
+        <div class="collection-section" data-aos="fade-up">
+            <div class="collection-content">
+                <div class="collection-text">
+                    <h2>AB-ZTECH<span> TOOLS</span> </h2>
+                    <p><em>Discover our wide range of tools and resources designed to empower developers, designers, and technology enthusiasts. Our collection is constantly growing to meet your needs.</em></p>
+                </div>
+                <div class="collection-image">
+                    <img src="https://i.ibb.co/3m1mZn2C/f0ccfde6b910bb0ca61748b063c8c49a-2.jpg" alt="AB-TECH Collection">
+                </div>
+            </div>
         </div>
+        
+        <div class="tools-intro" data-aos="fade-down">
+            <h1>Our <span>Tools</span></h1>
+            <p>Explore our collection of powerful tools designed to enhance your productivity and development experience.</p>
+        </div>
+        <div class="services-content">
+            <div class="box" data-aos="zoom-in-up">
+                <img src="https://i.ibb.co/xKpq7tcF/AB-TECH-AI.jpg" alt="AB AI">
+                <h3>AB AI</h3>
+                <p>Advanced AI assistant for various tasks and intelligent conversations.</p>
+                <a href="https://ai.abztech.xyz/">Use Tool <i class="ri-arrow-right-line"></i></a>
+            </div>
+            
+            <div class="box" data-aos="zoom-in-up">
+                <img src="https://i.ibb.co/Jw2vqk2X/07aee4e1-d270-4398-b7d7-9f9c276387d8.jpg" alt="AB TECH API">
+                <h3>AB TECH API</h3>
+                <p>Comprehensive API services for developers and applications.</p>
+                <a href="https://api-ab-tech.zone.id">Use Tool <i class="ri-arrow-right-line"></i></a>
+            </div>
+            
+            <div class="box" data-aos="zoom-in-up">
+                <img src="https://i.ibb.co/nMKnLHvG/ab-youtubedl.jpg" alt="Youtube download">
+                <h3>Youtube Downloader</h3>
+                <p>Download Youtube videos easily.</p>
+                <a href="https://youtube-search-downloader.vercel.app/">Use Tool <i class="ri-arrow-right-line"></i></a>
+            </div>
+                              
     </section>
 
-    <div class="text-center mt-12 text-xl sm:text-2xl text-blue-400">
-        <span id="text"></span><span class="cursor">|</span>
+    <div class="footer">
+        <div class="copyright">
+            <p>2024 AB-ZTECH, All Right Reserved.</p>
+        </div>
+        <a href="#" class="scroll-top">
+            <i class="ri-arrow-up-s-fill"></i>
+        </a>
     </div>
 
-    <main class="flex flex-col items-center py-8 sm:py-16 gap-8 sm:gap-12">
-        <div class="card w-full max-w-xs sm:max-w-sm bg-gray-800 rounded-xl p-6 text-center shadow-lg transition transform hover:translate-y-2">
-            <h3 class="text-lg sm:text-xl font-semibold mb-4">Youtube Downloader</h3>
-            <p class="mb-4">Click below to be able to download Youtube videos.</p>
-            <button class="bg-blue-500 text-white px-4 sm:px-6 py-3 rounded-lg text-lg font-semibold transition hover:bg-blue-600">
-                <a href="https://youtube-search-downloader.vercel.app/" target="_blank">Go to site</a>
-            </button>
-        </div>
-
-        <div class="card w-full max-w-xs sm:max-w-sm bg-gray-800 rounded-xl p-6 text-center shadow-lg transition transform hover:translate-y-2">
-            <h3 class="text-lg sm:text-xl font-semibold mb-4">TikTok Downloader</h3>
-            <p class="mb-4">Download tiktok videos without watermark.</p>
-            <button class="bg-blue-500 text-white px-4 sm:px-6 py-3 rounded-lg text-lg font-semibold transition hover:bg-blue-600">
-                <a href="https://ab-tiktok-downloader.vercel.app/" target="_blank">Go to site</a>
-            </button>
-        </div>
-
-        <div class="card w-full max-w-xs sm:max-w-sm bg-gray-800 rounded-xl p-6 text-center shadow-lg transition transform hover:translate-y-2">
-            <h3 class="text-lg sm:text-xl font-semibold mb-4">Imagine generator</h3>
-            <p class="mb-4">let ai create images from prompt.</p>
-            <button class="bg-blue-500 text-white px-4 sm:px-6 py-3 rounded-lg text-lg font-semibold transition hover:bg-blue-600">
-                <a href="https://ab-imagine-web.vercel.app/" target="_blank">Go to site</a>
-            </button>
-        </div>
-
-        <div class="card w-full max-w-xs sm:max-w-sm bg-gray-800 rounded-xl p-6 text-center shadow-lg transition transform hover:translate-y-2">
-            <h3 class="text-lg sm:text-xl font-semibold mb-4">AB CHAT AI</h3>
-            <p class="mb-4">Chat with AI.</p>
-            <button class="bg-blue-500 text-white px-4 sm:px-6 py-3 rounded-lg text-lg font-semibold transition hover:bg-blue-600">
-                <a href="https://ab-tech-ai.zone.id/" target="_blank">Go to site</a>
-            </button>
-        </div>
-
-        <div class="card w-full max-w-xs sm:max-w-sm bg-gray-800 rounded-xl p-6 text-center shadow-lg transition transform hover:translate-y-2" id="groups">
-            <h3 class="text-lg sm:text-xl font-semibold mb-4">Join My Channel</h3>
-            <p class="mb-4">Stay updated and connect with fellow followes!</p>
-            <a href="https://www.whatsapp.com/channel/0029VaMGgVL3WHTNkhzHik3c" target="_blank" class="text-blue-400 hover:text-blue-500 transition font-semibold">Join Group</a>
-        </div>
-    </main>
-
-    <footer class="bg-black py-6 text-center text-gray-400">
-        <p>&copy; 2023 Abraham Dwamena - <a href="https://wa.me/233533763772" class="text-blue-400 hover:text-blue-500">Contact Me</a></p>
-    </footer>
-
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        const textElement = document.getElementById('text');
-        const cursorElement = document.querySelector('.cursor');
-        const texts = [
-            "My name is NOT Abrahwahm",
-            "a developer",
-            "an anime / jesus editor",
-            "a lover of Microsoft Edge",
-            "an app dev more like app gyasa or app24 dev",
-            "cool and fun to be with 🤪",
-            "God is good",
-            "so love Jesus"
-        ];
-        let textIndex = 0;
-        let charIndex = 0;
-
-        function type() {
-            if (charIndex < texts[textIndex].length) {
-                textElement.textContent += texts[textIndex].charAt(charIndex);
-                charIndex++;
-                setTimeout(type, 100);
-            } else {
-                setTimeout(erase, 1500);
-            }
-        }
-
-        function erase() {
-            if (charIndex > 0) {
-                textElement.textContent = texts[textIndex].substring(0, charIndex - 1);
-                charIndex--;
-                setTimeout(erase, 50);
-            } else {
-                textIndex = (textIndex + 1) % texts.length;
-                setTimeout(type, 500);
-            }
-        }
-
-        window.addEventListener('load', () => {
-            type();
+        AOS.init({
+            offset: 300,
+            duration: 1400,
+        });
+        const header = document.querySelector("header");
+        window.addEventListener("scroll", function() {
+            header.classList.toggle("sticky", window.scrollY > 120);
         });
 
+        let menu = document.querySelector("#menu-icon");
+        let navlist = document.querySelector('.navlist');
+
+        menu.onclick = () => {
+            menu.classList.toggle('bx-x');
+            navlist.classList.toggle('active');
+        };
+
+        window.onscroll = () => {
+            menu.classList.remove('bx-x');
+            navlist.classList.remove('active');
+        };
+      
         function createSnowflakes() {
             const numberOfSnowflakes = 100; 
             const snowflakesContainer = document.querySelector('.snowflakes');
@@ -166,14 +461,14 @@
                 snowflake.style.left = `${Math.random() * 100}vw`;
                 snowflake.style.fontSize = `${Math.random() * 10 + 10}px`;
                 snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
-                snowflake.style.animationDelay = `${Math.random() * 5}s`;
+                snowflake.style.animationDelay = `${Math.random() * 5}s`; 
                 
                 snowflakesContainer.appendChild(snowflake);
-                snowflake.textContent = '*';
+                snowflake.textContent = '.';
             }
         }
 
         window.onload = createSnowflakes;
     </script>
 </body>
-</html>
+    </html>
