@@ -405,7 +405,7 @@ color: var(--other-color);
         padding: 18px 8%;
     }
     .logo {
-        font-size: 28px;
+        font-size: 25px;
     }
 }
 
@@ -515,4 +515,5 @@ color: var(--other-color);
     object-fit: cover;
     margin: 0 auto;
 }
+
 }
