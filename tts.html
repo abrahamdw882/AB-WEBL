@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html oncontextmenu="return false" onselectstart="return false" ondragstart="return false" lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AB-TECH" />
+    <meta name="description" content="AB-ZTECH Text to Speech - Convert text to natural sounding speech" />
+    <meta name="keywords" content="text to speech, TTS, voice synthesis, AB-TECH" />
+    <meta itemprop="image" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:image:secure_url" content="" />
+    <meta property="og:image:width" content="650" />
+    <meta property="og:image:height" content="350" />
+    <title>AB-ZTECH Text to Speech</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <link rel="stylesheet" href="tts.css"
+</head>
+<body>
+    <div class="snowflakes" aria-hidden="true"></div>
+    <header>
+        <a href="#" class="logo">AB<span>-ZTECH</span></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <ul class="navlist">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="top-btnn">
+            <a href="https://whatsapp.com/channel/0029VaMGgVL3WHTNkhzHik3c" class="h-btn">OUR CHANNEL</a>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="tts-container" data-aos="fade-in">
+            <h1>AB <span>Text to Speech</span></h1>
+            <div class="input-group">
+                <textarea id="text" placeholder="Enter text here..."></textarea>
+            </div>
+            <select id="voice" class="voice-select">
+                <option value="henry">Henry</option>
+                <option value="bwyneth">Bwyneth</option>
+                <option value="snoop">Snoop</option>
+                <option value="mrbeast">MrBeast</option>
+                <option value="gwyneth">Gwyneth</option>
+                <option value="cliff">Cliff</option>
+                <option value="guy">Guy</option>
+                <option value="jane">Jane</option>
+                <option value="matthew">Matthew</option>
+                <option value="benwilson">BenWilson</option>
+                <option value="presidential">Presidential</option>
+                <option value="carly">Carly</option>
+                <option value="kyle">Kyle</option>
+                <option value="kristy">Kristy</option>
+                <option value="oliver">Oliver</option>
+                <option value="tasha">Tasha</option>
+                <option value="joe">Joe</option>
+                <option value="lisa">Lisa</option>
+                <option value="george">George</option>
+                <option value="emily">Emily</option>
+                <option value="rob">Rob</option>
+                <option value="russell">Russell</option>
+                <option value="benjamin">Benjamin</option>
+                <option value="jenny">Jenny</option>
+                <option value="aria">Aria</option>
+                <option value="joanna">Joanna</option>
+                <option value="nate">Nate</option>
+                <option value="mary">Mary</option>
+                <option value="salli">Salli</option>
+                <option value="joey">Joey</option>
+                <option value="ryan">Ryan</option>
+                <option value="sonia">Sonia</option>
+                <option value="amy">Amy</option>
+                <option value="michael">Michael</option>
+                <option value="thomas">Thomas</option>
+                <option value="libby">Libby</option>
+                <option value="narrator">Narrator</option>
+                <option value="brian">Brian</option>
+                <option value="natasha">Natasha</option>
+                <option value="william">William</option>
+                <option value="freya">Freya</option>
+                <option value="ken">Ken</option>
+                <option value="olivia">Olivia</option>
+                <option value="aditi">Aditi</option>
+                <option value="abeo">Abeo</option>
+                <option value="ezinne">Ezinne</option>
+                <option value="luke">Luke</option>
+                <option value="leah">Leah</option>
+                <option value="willem">Willem</option>
+                <option value="adri">Adri</option>
+                <option value="fatima">Fatima</option>
+                <option value="hamdan">Hamdan</option>
+                <option value="hala">Hala</option>
+                <option value="rana">Rana</option>
+                <option value="bassel">Bassel</option>
+                <option value="bashkar">Bashkar</option>
+                <option value="tanishaa">Tanishaa</option>
+                <option value="kalina">Kalina</option>
+                <option value="borislav">Borislav</option>
+                <option value="joana">Joana</option>
+                <option value="enric">Enric</option>
+                <option value="xiaoxiao">Xiaoxiao</option>
+                <option value="yunfeng">Yunfeng</option>
+                <option value="xiaomeng">Xiaomeng</option>
+                <option value="yunjian">Yunjian</option>
+                <option value="xiaoyan">Xiaoyan</option>
+                <option value="yunze">Yunze</option>
+                <option value="zhiyu">Zhiyu</option>
+                <option value="hiumaan">Hiumaan</option>
+                <option value="wanlung">Wanlung</option>
+                <option value="hiujin">Hiujin</option>
+                <option value="hsiaochen">Hsiaochen</option>
+                <option value="hsiaoyu">Hsiaoyu</option>
+                <option value="yunjhe">Yunjhe</option>
+                <option value="srecko">Srecko</option>
+                <option value="gabrijela">Gabrijela</option>
+                <option value="antonin">Antonin</option>
+                <option value="vlasta">Vlasta</option>
+                <option value="christel">Christel</option>
+                <option value="jeppe">Jeppe</option>
+                <option value="colette">Colette</option>
+                <option value="maarten">Maarten</option>
+                <option value="laura">Laura</option>
+                <option value="ruben">Ruben</option>
+                <option value="dena">Dena</option>
+                <option value="arnaud">Arnaud</option>
+                <option value="anu">Anu</option>
+                <option value="kert">Kert</option>
+                <option value="blessica">Blessica</option>
+                <option value="angelo">Angelo</option>
+                <option value="harri">Harri</option>
+                <option value="selma">Selma</option>
+                <option value="denise">Denise</option>
+                <option value="henri">Henri</option>
+                <option value="celeste">Celeste</option>
+                <option value="claude">Claude</option>
+                <option value="sylvie">Sylvie</option>
+                <option value="jean">Jean</option>
+                <option value="charline">Charline</option>
+                <option value="gerard">Gerard</option>
+                <option value="ariane">Ariane</option>
+                <option value="fabrice">Fabrice</option>
+                <option value="katja">Katja</option>
+                <option value="christoph">Christoph</option>
+                <option value="louisa">Louisa</option>
+                <option value="conrad">Conrad</option>
+                <option value="vicki">Vicki</option>
+                <option value="daniel">Daniel</option>
+                <option value="giorgi">Giorgi</option>
+                <option value="eka">Eka</option>
+                <option value="athina">Athina</option>
+                <option value="nestoras">Nestoras</option>
+                <option value="avri">Avri</option>
+                <option value="hila">Hila</option>
+                <option value="madhur">Madhur</option>
+                <option value="swara">Swara</option>
+                <option value="noemi">Noemi</option>
+                <option value="tamas">Tamas</option>
+                <option value="gudrun">Gudrun</option>
+                <option value="gunnar">Gunnar</option>
+                <option value="gadis">Gadis</option>
+                <option value="ardi">Ardi</option>
+                <option value="irma">Irma</option>
+                <option value="benigno">Benigno</option>
+                <option value="elsa">Elsa</option>
+                <option value="gianni">Gianni</option>
+                <option value="palmira">Palmira</option>
+                <option value="diego">Diego</option>
+                <option value="imelda">Imelda</option>
+                <option value="cataldo">Cataldo</option>
+                <option value="bianca">Bianca</option>
+                <option value="adriano">Adriano</option>
+                <option value="mayu">Mayu</option>
+                <option value="naoki">Naoki</option>
+                <option value="nanami">Nanami</option>
+                <option value="daichi">Daichi</option>
+                <option value="shiori">Shiori</option>
+                <option value="keita">Keita</option>
+                <option value="daulet">Daulet</option>
+                <option value="aigul">Aigul</option>
+                <option value="sunhi">Sunhi</option>
+                <option value="injoon">Injoon</option>
+                <option value="jimin">Jimin</option>
+                <option value="bongjin">Bongjin</option>
+                <option value="seoyeon">Seoyeon</option>
+                <option value="ona">Ona</option>
+                <option value="leonas">Leonas</option>
+                <option value="everita">Everita</option>
+                <option value="nils">Nils</option>
+                <option value="osman">Osman</option>
+                <option value="yasmin">Yasmin</option>
+                <option value="sagar">Sagar</option>
+                <option value="hemkala">Hemkala</option>
+                <option value="iselin">Iselin</option>
+                <option value="finn">Finn</option>
+                <option value="pernille">Pernille</option>
+                <option value="farid">Farid</option>
+                <option value="dilara">Dilara</option>
+                <option value="agnieszka">Agnieszka</option>
+                <option value="marek">Marek</option>
+                <option value="zofia">Zofia</option>
+                <option value="brenda">Brenda</option>
+                <option value="donato">Donato</option>
+                <option value="yara">Yara</option>
+                <option value="fabio">Fabio</option>
+                <option value="leila">Leila</option>
+                <option value="julio">Julio</option>
+                <option value="camila">Camila</option>
+                <option value="thiago">Thiago</option>
+                <option value="fernanda">Fernanda</option>
+                <option value="duarte">Duarte</option>
+                <option value="ines">Ines</option>
+                <option value="cristiano">Cristiano</option>
+                <option value="alina">Alina</option>
+                <option value="emil">Emil</option>
+                <option value="dariya">Dariya</option>
+                <option value="dmitry">Dmitry</option>
+                <option value="tatyana">Tatyana</option>
+                <option value="maxim">Maxim</option>
+                <option value="viktoria">Viktoria</option>
+                <option value="lukas">Lukas</option>
+                <option value="petra">Petra</option>
+                <option value="rok">Rok</option>
+                <option value="sameera">Sameera</option>
+                <option value="thilini">Thilini</option>
+                <option value="saul">Saul</option>
+                <option value="vera">Vera</option>
+                <option value="arnau">Arnau</option>
+                <option value="triana">Triana</option>
+                <option value="gerardo">Gerardo</option>
+                <option value="carlota">Carlota</option>
+                <option value="luciano">Luciano</option>
+                <option value="larissa">Larissa</option>
+                <option value="lupe">Lupe</option>
+                <option value="hillevi">Hillevi</option>
+                <option value="mattias">Mattias</option>
+                <option value="sofie">Sofie</option>
+                <option value="rehema">Rehema</option>
+                <option value="daudi">Daudi</option>
+                <option value="pallavi">Pallavi</option>
+                <option value="valluvar">Valluvar</option>
+                <option value="saranya">Saranya</option>
+                <option value="kumar">Kumar</option>
+                <option value="kani">Kani</option>
+                <option value="surya">Surya</option>
+                <option value="venba">Venba</option>
+                <option value="anbu">Anbu</option>
+                <option value="mohan">Mohan</option>
+                <option value="shruti">Shruti</option>
+                <option value="premwadee">Premwadee</option>
+                <option value="niwat">Niwat</option>
+                <option value="emel">Emel</option>
+                <option value="ahmet">Ahmet</option>
+                <option value="gul">Gul</option>
+                <option value="salman">Salman</option>
+                <option value="uzma">Uzma</option>
+                <option value="asad">Asad</option>
+                <option value="polina">Polina</option>
+                <option value="ostap">Ostap</option>
+                <option value="hoaimy">Hoaimy</option>
+                <option value="namminh">Namminh</option>
+                <option value="orla">Orla</option>
+                <option value="colm">Colm</option>
+            </select>
+            <button class="convert-btn" onclick="speak()">Convert to Speech</button>
+            <div class="audio-player">
+                <audio id="audio" controls></audio>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer">
+        <div class="copyright">
+            <p>2024 AB-ZTECH, All Right Reserved.</p>
+        </div>
+        <a href="#home" class="scroll-top">
+            <i class="ri-arrow-up-s-fill"></i>
+        </a>
+    </div>
+
+    <script src="tts.js">
+   
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 300,
+            duration: 1400,
+        });
+    </script>
+</body>
+</html>
