@@ -169,7 +169,6 @@
             a.click();
             document.body.removeChild(a);
             
-            // Clean up the object URL
             setTimeout(() => URL.revokeObjectURL(objectUrl), 100);
             
             imageCounter++;
