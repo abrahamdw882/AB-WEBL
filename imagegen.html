@@ -72,7 +72,7 @@
     </div>
 
     <script>
-        const input = document.getElementById("prompt");
+       const input = document.getElementById("prompt");
         const preview = document.getElementById("preview");
         const downloadBtn = document.getElementById("download-btn");
         const imageContainer = document.querySelector('.image-preview-container');
@@ -80,6 +80,7 @@
         let typingTimer;
         let currentImageUrl = '';
         let imageCounter = 1; 
+        let currentImageBlob = null;
 
         input.addEventListener("input", () => {
             clearTimeout(typingTimer);
@@ -106,9 +107,17 @@
             try {
                 const url = `https://ab-text-toimgfast.abrahamdw882.workers.dev/?text=${encodeURIComponent(text)}`;
                 currentImageUrl = url;
+                
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Failed to fetch image');
+                
+                currentImageBlob = await response.blob();
+              
+                const objectUrl = URL.createObjectURL(currentImageBlob);
+                
                 const testImage = new Image();
                 testImage.onload = function() {
-                    preview.src = url;
+                    preview.src = objectUrl;
                     preview.style.display = "block";
                     downloadBtn.style.display = "block";
                     adjustImageDisplay();
@@ -116,8 +125,9 @@
                 testImage.onerror = function() {
                     console.error("Error loading image");
                     imageContainer.style.minHeight = "300px";
+                    URL.revokeObjectURL(objectUrl);
                 };
-                testImage.src = url;
+                testImage.src = objectUrl;
                 
             } catch (err) {
                 console.error("Error fetching image:", err);
@@ -145,29 +155,37 @@
                 imageContainer.style.minHeight = `${containerHeight}px`;
             }
         }
+        
         downloadBtn.addEventListener('click', function() {
-            if (!currentImageUrl) return;
-            const a = document.createElement('a');
-            const separator = currentImageUrl.includes('?') ? '&' : '?';
-            const downloadUrl = currentImageUrl + separator + 'download=true&id=' + imageCounter;
+            if (!currentImageBlob) return;
             
-            a.href = downloadUrl;
+            
+            const a = document.createElement('a');
+            const objectUrl = URL.createObjectURL(currentImageBlob);
+            
+            a.href = objectUrl;
             a.download = 'abztech-generated-image-' + imageCounter + '.jpg';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             
+            // Clean up the object URL
+            setTimeout(() => URL.revokeObjectURL(objectUrl), 100);
+            
             imageCounter++;
         });
+        
         window.addEventListener('resize', function() {
             if (preview.style.display === "block") {
                 adjustImageDisplay();
             }
         });
+        
         const header = document.querySelector("header");
         window.addEventListener("scroll", function() {
             header.classList.toggle("sticky", window.scrollY > 120);
         });
+        
         let menu = document.querySelector("#menu-icon");
         let navlist = document.querySelector('.navlist');
         menu.onclick = () => {
@@ -180,6 +198,7 @@
                 navlist.classList.remove('active');
             }
         };
+        
         function createSnowflakes() {
             const numberOfSnowflakes = 100;
             const snowflakesContainer = document.querySelector('.snowflakes');
