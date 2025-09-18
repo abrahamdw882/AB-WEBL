@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html oncontextmenu="return false" onselectstart="return false" ondragstart="return false" lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AB-TECH" />
+    <meta name="description" content="AB-ZTECH AI Image Generator - Generate images from text descriptions" />
+    <meta name="keywords" content="AI image generator, text to image, AI art, AB-TECH" />
+    <meta itemprop="image" content="#" />
+    <meta property="og:image" content="#" />
+    <meta property="og:image:secure_url" content="#" />
+    <meta property="og:image:width" content="650" />
+    <meta property="og:image:height" content="350" />
+    <title>AB-ZTECH AI Image Generator</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<link rel="stylesheet" href="imagegen.css"
+</head>
+<body>
+    <div class="snowflakes" aria-hidden="true"></div>
+    <header>
+        <a href="#" class="logo">AB<span>-ZTECH</span></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <ul class="navlist">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="top-btnn">
+            <a href="https://whatsapp.com/channel/0029VaMGgVL3WHTNkhzHik3c" class="h-btn">OUR CHANNEL</a>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="image-container" data-aos="fade-in">
+            <h1>AB <span>AI Image Generator</span></h1>
+            <div class="input-group">
+                <input type="text" id="prompt" placeholder="Describe the image you want to generate...">
+            </div>
+            
+            <div class="image-preview-container">
+                <img id="preview" alt="Generated Image">
+                <button class="download-btn" id="download-btn">Download Image</button>
+            </div>
+            
+            <div class="instructions">
+                <h3>How to Use</h3>
+                <ol>
+                    <li>Type a description of the image you want in the input field above</li>
+                    <li>The AI will generate an image as you type (with a short delay)</li>
+                    <li>Be as descriptive as possible for better results</li>
+                    <li>Try different prompts to explore the AI's capabilities</li>
+                    <li>Download your favorite images with the download button</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer">
+        <div class="copyright">
+            <p>2024 AB-IMAGE, All Right Reserved.</p>
+        </div>
+        <a href="#home" class="scroll-top">
+            <i class="ri-arrow-up-s-fill"></i>
+        </a>
+    </div>
+
+    <script>
+        const input = document.getElementById("prompt");
+        const preview = document.getElementById("preview");
+        const downloadBtn = document.getElementById("download-btn");
+        const imageContainer = document.querySelector('.image-preview-container');
+
+        let typingTimer;
+        let currentImageUrl = '';
+        let imageCounter = 1; 
+
+        input.addEventListener("input", () => {
+            clearTimeout(typingTimer);
+            
+            const text = input.value.trim();
+            if (!text) {
+                preview.style.display = "none";
+                downloadBtn.style.display = "none";
+                return;
+            }
+            imageContainer.style.minHeight = "300px";
+            
+            typingTimer = setTimeout(fetchImage, 600);
+        });
+
+        async function fetchImage() {
+            const text = input.value.trim();
+            if (!text) {
+                preview.style.display = "none";
+                downloadBtn.style.display = "none";
+                return;
+            }
+            
+            try {
+                const url = `https://ab-text-toimgfast.abrahamdw882.workers.dev/?text=${encodeURIComponent(text)}`;
+                currentImageUrl = url;
+                const testImage = new Image();
+                testImage.onload = function() {
+                    preview.src = url;
+                    preview.style.display = "block";
+                    downloadBtn.style.display = "block";
+                    adjustImageDisplay();
+                };
+                testImage.onerror = function() {
+                    console.error("Error loading image");
+                    imageContainer.style.minHeight = "300px";
+                };
+                testImage.src = url;
+                
+            } catch (err) {
+                console.error("Error fetching image:", err);
+            }
+        }
+
+        function adjustImageDisplay() {
+            preview.style.width = "";
+            preview.style.height = "";
+            preview.style.objectFit = "contain";
+            void preview.offsetWidth;
+            
+            const containerWidth = preview.parentElement.offsetWidth;
+            const maxHeight = window.innerHeight * 0.5; 
+            if (preview.naturalWidth && preview.naturalHeight) {
+                const ratio = preview.naturalWidth / preview.naturalHeight;
+                let containerHeight;
+                
+                if (ratio > 1) {
+                    containerHeight = Math.min(containerWidth / ratio, maxHeight);
+                } else {
+                    containerHeight = Math.min(containerWidth / ratio, maxHeight);
+                }
+                
+                imageContainer.style.minHeight = `${containerHeight}px`;
+            }
+        }
+        downloadBtn.addEventListener('click', function() {
+            if (!currentImageUrl) return;
+            const a = document.createElement('a');
+            const separator = currentImageUrl.includes('?') ? '&' : '?';
+            const downloadUrl = currentImageUrl + separator + 'download=true&id=' + imageCounter;
+            
+            a.href = downloadUrl;
+            a.download = 'abztech-generated-image-' + imageCounter + '.jpg';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            imageCounter++;
+        });
+        window.addEventListener('resize', function() {
+            if (preview.style.display === "block") {
+                adjustImageDisplay();
+            }
+        });
+        const header = document.querySelector("header");
+        window.addEventListener("scroll", function() {
+            header.classList.toggle("sticky", window.scrollY > 120);
+        });
+        let menu = document.querySelector("#menu-icon");
+        let navlist = document.querySelector('.navlist');
+        menu.onclick = () => {
+            menu.classList.toggle('bx-x');
+            navlist.classList.toggle('active');
+        };
+        window.onscroll = () => {
+            if (window.scrollY > 120) {
+                menu.classList.remove('bx-x');
+                navlist.classList.remove('active');
+            }
+        };
+        function createSnowflakes() {
+            const numberOfSnowflakes = 100;
+            const snowflakesContainer = document.querySelector('.snowflakes');
+
+            for (let i = 0; i < numberOfSnowflakes; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.style.left = `${Math.random() * 100}vw`;
+                snowflake.style.fontSize = `${Math.random() * 10 + 10}px`;
+                snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                snowflake.style.animationDelay = `${Math.random() * 5}s`;
+                snowflakesContainer.appendChild(snowflake);
+                snowflake.textContent = '.';
+            }
+        }
+
+        window.onload = createSnowflakes;
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 300,
+            duration: 1400,
+        });
+    </script>
+</body>
+</html>
