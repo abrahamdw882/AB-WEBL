@@ -9,7 +9,7 @@
     <meta name="keywords" content="image enhancer, upscaler, before after, tools" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="enhance.css"
+   <link rel="stylesheet" href="enhance.css"
   </head>
   <body>
     <div class="snowflakes" aria-hidden="true"></div>
@@ -40,6 +40,8 @@
               <i class="ri-upload-2-line"></i>Select Image </button>
             <button class="btn" id="resetBtn" disabled>
               <i class="ri-refresh-line"></i>Reset </button>
+            <button class="btn" id="reEnhanceBtn" disabled>
+              <i class="ri-magic-line"></i>Re-Enhance </button>
             <a class="btn" id="downloadBtn" download="enhanced.png" style="pointer-events:none;opacity:.6;">
               <i class="ri-download-2-line"></i>Download </a>
           </div>
@@ -52,6 +54,10 @@
               <span class="badge">After</span>
             </div>
             <div class="compare-container" id="compareContainer">
+              <div class="loading-overlay" id="loadingOverlay">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">Re-Enhancing Image...</div>
+              </div>
               <img id="beforeImg" alt="Original">
               <div class="after-clip" id="afterClip">
                 <img id="afterImg" alt="Enhanced">
@@ -120,6 +126,7 @@
       const fileInput = document.getElementById('fileInput');
       const pickBtn = document.getElementById('pickBtn');
       const resetBtn = document.getElementById('resetBtn');
+      const reEnhanceBtn = document.getElementById('reEnhanceBtn');
       const downloadBtn = document.getElementById('downloadBtn');
       const statusEl = document.getElementById('status');
       const compareWrapper = document.getElementById('compareWrapper');
@@ -129,16 +136,19 @@
       const divider = document.getElementById('divider');
       const slider = document.getElementById('slider');
       const compareContainer = document.getElementById('compareContainer');
+      const loadingOverlay = document.getElementById('loadingOverlay');
       
       const UPLOADER_URL = 'https://ab-uploader.abrahamdw882.workers.dev/';
       const ENHANCER_URL = 'https://ab-enhancerv2.abrahamdw882.workers.dev/?url=';
       let originalUrl = '';
       let enhancedBlobUrl = '';
+      let enhancedBlob = null;
 
       function setBusy(text) {
         statusEl.textContent = text;
         pickBtn.disabled = true;
         resetBtn.disabled = true;
+        reEnhanceBtn.disabled = true;
         dropZone.style.pointerEvents = 'none'
       }
 
@@ -146,7 +156,18 @@
         statusEl.textContent = text;
         pickBtn.disabled = false;
         resetBtn.disabled = false;
+        reEnhanceBtn.disabled = false;
         dropZone.style.pointerEvents = 'auto'
+      }
+
+      function showLoading() {
+        compareContainer.classList.add('loading');
+        loadingOverlay.classList.add('active');
+      }
+
+      function hideLoading() {
+        compareContainer.classList.remove('loading');
+        loadingOverlay.classList.remove('active');
       }
       
       dropZone.addEventListener('click', () => fileInput.click());
@@ -169,6 +190,7 @@
         }
       });
       resetBtn.addEventListener('click', resetAll);
+      reEnhanceBtn.addEventListener('click', reEnhanceImage);
       
       slider.addEventListener('input', () => updateClip(slider.value));
       let dragging = false;
@@ -231,8 +253,8 @@
           const enhanceUrl = ENHANCER_URL + originalUrl;
           const enhRes = await fetch(enhanceUrl);
           if (!enhRes.ok) throw new Error(`Enhancer error: ${enhRes.status}`);
-          const blob = await enhRes.blob();
-          enhancedBlobUrl = URL.createObjectURL(blob);
+          enhancedBlob = await enhRes.blob();
+          enhancedBlobUrl = URL.createObjectURL(enhancedBlob);
           afterImg.src = enhancedBlobUrl;
           compareWrapper.style.display = 'block';
           updateClip(50);
@@ -247,6 +269,54 @@
         }
       }
 
+      async function reEnhanceImage() {
+        if (!enhancedBlob) {
+          statusEl.textContent = 'No enhanced image available to re-enhance.';
+          return;
+        }
+        
+        showLoading();
+        setBusy('Re-enhancing image...');
+        
+        try {
+          const formData = new FormData();
+          formData.append('file', enhancedBlob, 'enhanced.png');
+          const uploadRes = await fetch(UPLOADER_URL, {
+            method: 'POST',
+            body: formData
+          });
+          if (!uploadRes.ok) throw new Error(`Upload error: ${uploadRes.status}`);
+          const uploadData = await uploadRes.json();
+          let uploadedUrl = uploadData.url || uploadData.URL || uploadData.link;
+          if (!uploadedUrl) throw new Error('Uploader did not return a URL');
+          if (uploadedUrl.startsWith('http://')) uploadedUrl = uploadedUrl.replace('http://', 'https://');
+          
+          const enhanceUrl = ENHANCER_URL + uploadedUrl;
+          const enhRes = await fetch(enhanceUrl);
+          if (!enhRes.ok) throw new Error(`Enhancer error: ${enhRes.status}`);
+          
+          if (enhancedBlobUrl) {
+            URL.revokeObjectURL(enhancedBlobUrl);
+          }
+          
+          enhancedBlob = await enhRes.blob();
+          enhancedBlobUrl = URL.createObjectURL(enhancedBlob);
+          afterImg.src = enhancedBlobUrl;
+          beforeImg.src = originalUrl;
+          
+          updateClip(50);
+          hideLoading();
+          setReady('Image re-enhanced! Further improvements applied.');
+          downloadBtn.href = enhancedBlobUrl;
+          downloadBtn.style.pointerEvents = 'auto';
+          downloadBtn.style.opacity = '1';
+        } catch (err) {
+          hideLoading();
+          statusEl.textContent = 'Error during re-enhancement: ' + err.message;
+          setReady('Re-enhancement failed');
+        }
+      }
+
       function updateClip(percent) {
         const rect = compareContainer.getBoundingClientRect();
         const clipX = rect.width * (percent / 100);
@@ -257,7 +327,8 @@
       function resetPreviewOnly() {
         if (enhancedBlobUrl) {
           URL.revokeObjectURL(enhancedBlobUrl);
-          enhancedBlobUrl = ''
+          enhancedBlobUrl = '';
+          enhancedBlob = null;
         }
         beforeImg.removeAttribute('src');
         afterImg.removeAttribute('src');
@@ -265,6 +336,8 @@
         downloadBtn.removeAttribute('href');
         downloadBtn.style.pointerEvents = 'none';
         downloadBtn.style.opacity = '.6';
+        reEnhanceBtn.disabled = true;
+        hideLoading();
       }
 
       function resetAll() {
