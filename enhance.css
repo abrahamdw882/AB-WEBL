@@ -247,7 +247,7 @@
       .compare-container {
         position: relative;
         width: 100%;
-        height: clamp(220px, 50vw, 520px);
+        height: clamp(400px, 70vw, 700px);
         background: #0f141a;
         user-select: none;
         touch-action: none;
@@ -260,7 +260,12 @@
         height: 100%;
         object-fit: contain;
         background: #0f141a;
-        z-index: 1
+        z-index: 1;
+        transition: filter 0.3s ease;
+      }
+
+      .compare-container.loading img {
+        filter: brightness(0.6);
       }
 
       .after-clip {
@@ -404,6 +409,51 @@
         }
       }
 
+      /* Loading overlay styles */
+      .loading-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .loading-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .loading-spinner {
+        width: 60px;
+        height: 60px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid var(--main-color);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 16px;
+      }
+
+      .loading-text {
+        color: white;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
       @media (max-width: 768px) {
         header {
           padding: 12px 16px;
@@ -438,6 +488,19 @@
           width: 48px;
           height: 48px;
         }
+
+        .compare-container {
+          height: clamp(450px, 80vw, 650px);
+        }
+
+        .loading-spinner {
+          width: 50px;
+          height: 50px;
+        }
+
+        .loading-text {
+          font-size: 1rem;
+        }
       }
 
       @media (max-width: 480px) {
@@ -459,5 +522,35 @@
           width: 40px;
           height: 40px;
           font-size: 10px;
+        }
+
+        .compare-container {
+          height: clamp(400px, 85vw, 600px);
+        }
+
+        .loading-spinner {
+          width: 40px;
+          height: 40px;
+          border-width: 3px;
+        }
+
+        .loading-text {
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .compare-container {
+          height: clamp(380px, 90vw, 550px);
+        }
+
+        .loading-spinner {
+          width: 35px;
+          height: 35px;
+          border-width: 3px;
+        }
+
+        .loading-text {
+          font-size: 0.85rem;
         }
       }
