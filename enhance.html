@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/x-icon" href="" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AB-ZTECH Image Enhancer</title>
+    <meta name="description" content="AB-ZTECH - Temp + Rebix Image Enhancer" />
+    <meta name="keywords" content="image enhancer, upscaler, before after, tools" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="enhance.css"
+  </head>
+  <body>
+    <div class="snowflakes" aria-hidden="true"></div>
+    <header>
+      <div class="logo">AB <span>-ZTECH</span>
+      </div>
+      <a href="https://whatsapp.com/channel/0029VaMGgVL3WHTNkhzHik3c" class="h-btn">OUR CHANNEL</a>
+    </header>
+    <main>
+      <div class="intro">
+        <h1>Image <span style="color:var(--main-color)"> Enhancer</span>
+        </h1>
+        <p>Upload an image, enhance with your Workers, and compare results with a professional before/after slider.</p>
+      </div>
+      <div class="enhancer-card">
+        <div class="section-caption">
+          <h2>Enhance your image</h2>
+          <div class="muted">Supported: JPG, PNG, WEBP</div>
+        </div>
+        <div class="narrow-container">
+          <div class="drop-zone" id="dropZone">
+            <h3>Drag & Drop an image</h3>
+            <p>or click to select</p>
+          </div>
+          <input type="file" id="fileInput" accept="image/*" hidden>
+          <div class="controls-row">
+            <button class="btn primary" id="pickBtn">
+              <i class="ri-upload-2-line"></i>Select Image </button>
+            <button class="btn" id="resetBtn" disabled>
+              <i class="ri-refresh-line"></i>Reset </button>
+            <a class="btn" id="downloadBtn" download="enhanced.png" style="pointer-events:none;opacity:.6;">
+              <i class="ri-download-2-line"></i>Download </a>
+          </div>
+          <div class="status" id="status">Waiting for image…</div>
+        </div>
+        <div class="compare-wrapper" id="compareWrapper">
+          <div class="narrow-container">
+            <div class="compare-header">
+              <span class="badge">Before</span>
+              <span class="badge">After</span>
+            </div>
+            <div class="compare-container" id="compareContainer">
+              <img id="beforeImg" alt="Original">
+              <div class="after-clip" id="afterClip">
+                <img id="afterImg" alt="Enhanced">
+              </div>
+              <div class="divider" id="divider">
+                <div class="handle">(&lt; &gt;)</div>
+              </div>
+            </div>
+            <div class="slider-row">
+              <i class="ri-swap-line"></i>
+              <input type="range" min="0" max="100" value="50" class="range" id="slider">
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>2024 AB-ZTECH, All Rights Reserved.</p>
+      <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+      </a>
+    </footer>
+    <script>
+      function createSnowflakes() {
+        const container = document.querySelector('.snowflakes');
+        if (!container) return;
+        const N = 80;
+        for (let i = 0; i < N; i++) {
+          const el = document.createElement('div');
+          el.className = 'snowflake';
+          el.textContent = '•';
+          el.style.left = Math.random() * 100 + 'vw';
+          el.style.fontSize = (Math.random() * 10 + 8) + 'px';
+          el.style.animationDuration = (Math.random() * 5 + 6) + 's';
+          el.style.animationDelay = (Math.random() * 5) + 's';
+          container.appendChild(el);
+        }
+      }
+      
+      function setupBackToTop() {
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+          if (window.pageYOffset > 300) {
+            backToTopBtn.style.display = 'flex';
+          } else {
+            backToTopBtn.style.display = 'none';
+          }
+        });
+        
+        backToTopBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+      
+      document.addEventListener('DOMContentLoaded', () => {
+        createSnowflakes();
+        setupBackToTop();
+      });
+      
+      const dropZone = document.getElementById('dropZone');
+      const fileInput = document.getElementById('fileInput');
+      const pickBtn = document.getElementById('pickBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const statusEl = document.getElementById('status');
+      const compareWrapper = document.getElementById('compareWrapper');
+      const beforeImg = document.getElementById('beforeImg');
+      const afterImg = document.getElementById('afterImg');
+      const afterClip = document.getElementById('afterClip');
+      const divider = document.getElementById('divider');
+      const slider = document.getElementById('slider');
+      const compareContainer = document.getElementById('compareContainer');
+      
+      const UPLOADER_URL = 'https://ab-uploader.abrahamdw882.workers.dev/';
+      const ENHANCER_URL = 'https://ab-enhancerv2.abrahamdw882.workers.dev/?url=';
+      let originalUrl = '';
+      let enhancedBlobUrl = '';
+
+      function setBusy(text) {
+        statusEl.textContent = text;
+        pickBtn.disabled = true;
+        resetBtn.disabled = true;
+        dropZone.style.pointerEvents = 'none'
+      }
+
+      function setReady(text) {
+        statusEl.textContent = text;
+        pickBtn.disabled = false;
+        resetBtn.disabled = false;
+        dropZone.style.pointerEvents = 'auto'
+      }
+      
+      dropZone.addEventListener('click', () => fileInput.click());
+      pickBtn.addEventListener('click', () => fileInput.click());
+      dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('hover')
+      });
+      dropZone.addEventListener('dragleave', () => dropZone.classList.remove('hover'));
+      dropZone.addEventListener('drop', async (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('hover');
+        if (e.dataTransfer.files?.length) {
+          await handleFile(e.dataTransfer.files[0])
+        }
+      });
+      fileInput.addEventListener('change', async () => {
+        if (fileInput.files?.length) {
+          await handleFile(fileInput.files[0])
+        }
+      });
+      resetBtn.addEventListener('click', resetAll);
+      
+      slider.addEventListener('input', () => updateClip(slider.value));
+      let dragging = false;
+
+      function startDrag(e) {
+        dragging = true;
+        e.preventDefault();
+        compareContainer.setPointerCapture(e.pointerId);
+        updateFromPointer(e);
+      }
+
+      function moveDrag(e) {
+        if (!dragging) return;
+        e.preventDefault();
+        updateFromPointer(e);
+      }
+
+      function endDrag(e) {
+        dragging = false;
+        compareContainer.releasePointerCapture(e.pointerId);
+      }
+      
+      [compareContainer, divider].forEach(el => {
+        el.addEventListener('pointerdown', startDrag);
+        el.addEventListener('pointermove', moveDrag);
+        el.addEventListener('pointerup', endDrag);
+        el.addEventListener('pointercancel', endDrag);
+      });
+
+      function updateFromPointer(e) {
+        const rect = compareContainer.getBoundingClientRect();
+        const x = Math.max(0, Math.min(rect.width, e.clientX - rect.left));
+        const percent = Math.round((x / rect.width) * 100);
+        slider.value = String(percent);
+        updateClip(percent);
+      }
+      
+      async function handleFile(file) {
+        if (!file || !file.type.startsWith('image/')) {
+          statusEl.textContent = 'Please select a valid image file.';
+          return
+        }
+        resetPreviewOnly();
+        setBusy('Uploading image...');
+        try {
+          const formData = new FormData();
+          formData.append('file', file);
+          const uploadRes = await fetch(UPLOADER_URL, {
+            method: 'POST',
+            body: formData
+          });
+          if (!uploadRes.ok) throw new Error(`Upload error: ${uploadRes.status}`);
+          const uploadData = await uploadRes.json();
+          let uploadedUrl = uploadData.url || uploadData.URL || uploadData.link;
+          if (!uploadedUrl) throw new Error('Uploader did not return a URL');
+          if (uploadedUrl.startsWith('http://')) uploadedUrl = uploadedUrl.replace('http://', 'https://');
+          originalUrl = uploadedUrl;
+          beforeImg.src = originalUrl;
+          setBusy('Enhancing image...');
+          const enhanceUrl = ENHANCER_URL + originalUrl;
+          const enhRes = await fetch(enhanceUrl);
+          if (!enhRes.ok) throw new Error(`Enhancer error: ${enhRes.status}`);
+          const blob = await enhRes.blob();
+          enhancedBlobUrl = URL.createObjectURL(blob);
+          afterImg.src = enhancedBlobUrl;
+          compareWrapper.style.display = 'block';
+          updateClip(50);
+          setReady('Image enhanced! Drag the handle or use the slider.');
+          downloadBtn.href = enhancedBlobUrl;
+          downloadBtn.style.pointerEvents = 'auto';
+          downloadBtn.style.opacity = '1';
+        } catch (err) {
+          statusEl.textContent = 'Error: ' + err.message;
+          pickBtn.disabled = false;
+          dropZone.style.pointerEvents = 'auto';
+        }
+      }
+
+      function updateClip(percent) {
+        const rect = compareContainer.getBoundingClientRect();
+        const clipX = rect.width * (percent / 100);
+        afterClip.style.clipPath = `inset(0 ${Math.max(0,rect.width-clipX)}px 0 0)`;
+        divider.style.left = `${clipX}px`;
+      }
+
+      function resetPreviewOnly() {
+        if (enhancedBlobUrl) {
+          URL.revokeObjectURL(enhancedBlobUrl);
+          enhancedBlobUrl = ''
+        }
+        beforeImg.removeAttribute('src');
+        afterImg.removeAttribute('src');
+        compareWrapper.style.display = 'none';
+        downloadBtn.removeAttribute('href');
+        downloadBtn.style.pointerEvents = 'none';
+        downloadBtn.style.opacity = '.6';
+      }
+
+      function resetAll() {
+        fileInput.value = '';
+        originalUrl = '';
+        resetPreviewOnly();
+        statusEl.textContent = 'Waiting for image…';
+        pickBtn.disabled = false;
+        dropZone.style.pointerEvents = 'auto';
+      }
+      
+      window.addEventListener('resize', () => updateClip(slider.value));
+      window.addEventListener('orientationchange', () => setTimeout(() => updateClip(slider.value), 200));
+    </script>
+  </body>
+</html>
