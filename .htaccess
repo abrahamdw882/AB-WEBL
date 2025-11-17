@@ -1,9 +1,4 @@
 ErrorDocument 404 /404.html
 
 RewriteEngine On
-
-RewriteCond %{HTTP_HOST} ^www\.abztech\.xyz$ [NC]
-RewriteRule ^ads\.txt$ https://srv.adstxtmanager.com/19390/abztech.xyz [L,R=301]
-
-RewriteCond %{HTTP_HOST} ^abztech\.xyz$ [NC]
 RewriteRule ^ads\.txt$ https://srv.adstxtmanager.com/19390/abztech.xyz [L,R=301]
