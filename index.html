@@ -21,6 +21,10 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+    window.ezstandalone = window.ezstandalone || {};
+    ezstandalone.cmd = ezstandalone.cmd || [];
+    </script>
     <style>
        
 
@@ -90,6 +94,14 @@
     </section>
 
     <section class="about" id="about">
+
+        
+        <div id="ezoic-pub-ad-placeholder-101"></div>
+
+
+
+
+        
         <div class="about-img" data-aos="zoom-in-down">
             <img src="https://raw.githubusercontent.com/abrahamdw882/AB-WEBL/refs/heads/main/me.jpg">
         </div>
@@ -232,10 +244,12 @@
         window.onload = createSnowflakes;
     </script>
     <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
-<script>
-    window.ezstandalone = window.ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-</script>
+
+    <script>
+    ezstandalone.cmd.push(function () {
+        ezstandalone.showAds(101);
+    });
+    </script>
 
 </body>
 </html>
